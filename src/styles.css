@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+.f-r {
+    float: right;
+}
+
+.m-l-5 {
+    margin-left: 5px;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

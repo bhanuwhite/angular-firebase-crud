@@ -1,0 +1,15 @@
+.user-section {
+    margin: 20px;
+}
+
+.error {
+    color: red;
+}
+
+.user-description-table {
+    padding-top: 40px;
+}
+
+table {
+    width: 100%;
+}

@@ -1,0 +1,270 @@
+<div class="container-fluid">
+  <!-- User Form section -->
+  <div class="user-section">
+    <form [formGroup]="userInfoForm">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label for="">Name</label>
+            <input type="text" class="form-control" formControlName="name" />
+            <div
+              *ngIf="
+                !userInfoForm.controls.name?.valid &&
+                (userInfoForm.controls.name?.dirty ||
+                  userInfoForm.controls.name?.touched ||
+                  isSubmit)
+              "
+              class="error"
+            >
+              <div [hidden]="!userInfoForm.controls.name.errors.required">
+                Name is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <label for="">Email</label>
+          <input type="email" class="form-control" formControlName="email" />
+          <div
+            *ngIf="
+              !userInfoForm.controls.email?.valid &&
+              (userInfoForm.controls.email?.dirty ||
+                userInfoForm.controls.email?.touched ||
+                isSubmit)
+            "
+            class="error"
+          >
+            <div [hidden]="!userInfoForm.controls.email.errors.required">
+              Email is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label for="">Phone Number</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="phoneNumber"
+            />
+            <div
+              *ngIf="
+                !userInfoForm.controls.phoneNumber?.valid &&
+                (userInfoForm.controls.phoneNumber?.dirty ||
+                  userInfoForm.controls.phoneNumber?.touched ||
+                  isSubmit)
+              "
+              class="error"
+            >
+              <div
+                [hidden]="!userInfoForm.controls.phoneNumber?.errors.required"
+              >
+                Phone number is required
+              </div>
+              <div [hidden]="!userInfoForm.controls.phoneNumber.errors.pattern">
+                Invalid mobile number
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <label for="">Gender</label>
+          <select name="" class="form-control" formControlName="gender">
+            <option value="">Select gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+          <div
+            *ngIf="
+              !userInfoForm.controls.gender?.valid &&
+              (userInfoForm.controls.gender?.dirty ||
+                userInfoForm.controls.gender?.touched ||
+                isSubmit)
+            "
+            class="error"
+          >
+            <div [hidden]="!userInfoForm.controls.gender.errors.required">
+              Gender is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="">Street</label>
+            <input type="text" class="form-control" formControlName="street" />
+            <div
+              *ngIf="
+                !userInfoForm.controls.street?.valid &&
+                (userInfoForm.controls.street?.dirty ||
+                  userInfoForm.controls.street?.touched ||
+                  isSubmit)
+              "
+              class="error"
+            >
+              <div [hidden]="!userInfoForm.controls.street.errors.required">
+                Street is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="">City</label>
+            <input type="text" class="form-control" formControlName="city" />
+            <div
+              *ngIf="
+                !userInfoForm.controls.city?.valid &&
+                (userInfoForm.controls.city?.dirty ||
+                  userInfoForm.controls.city?.touched ||
+                  isSubmit)
+              "
+              class="error"
+            >
+              <div [hidden]="!userInfoForm.controls.city.errors.required">
+                City is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="">Zip Code</label>
+            <input type="number" class="form-control" formControlName="zip" />
+            <div
+              *ngIf="
+                !userInfoForm.controls.zip?.valid &&
+                (userInfoForm.controls.zip?.dirty ||
+                  userInfoForm.controls.zip?.touched ||
+                  isSubmit)
+              "
+              class="error"
+            >
+              <div [hidden]="!userInfoForm.controls.zip.errors.required">
+                Zip code is required
+              </div>
+              <div [hidden]="!userInfoForm.controls.zip.errors.pattern">
+                Invalid ZIP code
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="">Country</label>
+            <input type="text" class="form-control" formControlName="country" />
+            <div
+              *ngIf="
+                !userInfoForm.controls.country?.valid &&
+                (userInfoForm.controls.country?.dirty ||
+                  userInfoForm.controls.country?.touched ||
+                  isSubmit)
+              "
+              class="error"
+            >
+              <div [hidden]="!userInfoForm.controls.country.errors.required">
+                Country is required
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="submit-section f-r">
+        <button
+          class="btn btn-primary"
+          [disabled]="!userInfoForm.valid"
+          (click)="submitUserInfoForm()"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- User table Section -->
+  <div class="user-description-table">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Search"
+        #input
+      />
+    </mat-form-field>
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSortDirection="asc"
+      matSort
+      matSortActive="name"
+      class="mat-elevation-z8"
+    >
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      <!-- Phone Number Column -->
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+        <td mat-cell *matCellDef="let element">{{ element.phoneNumber }}</td>
+      </ng-container>
+      <!-- Gender Column -->
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
+        <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+      </ng-container>
+      <!-- Street Column -->
+      <ng-container matColumnDef="street">
+        <th mat-header-cell *matHeaderCellDef>Street</th>
+        <td mat-cell *matCellDef="let element">{{ element.street }}</td>
+      </ng-container>
+      <!-- City Column -->
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef>City</th>
+        <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+      </ng-container>
+      <!-- Zip Column -->
+      <ng-container matColumnDef="zip">
+        <th mat-header-cell *matHeaderCellDef>Zip code</th>
+        <td mat-cell *matCellDef="let element">{{ element.zip }}</td>
+      </ng-container>
+      <!-- Country Column -->
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
+        <td mat-cell *matCellDef="let element">{{ element.country }}</td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            class="btn btn-sm btn-danger"
+            (click)="deleteUser(element.id)"
+          >
+            Delete
+          </button>
+          <button
+            class="btn btn-sm btn-success m-l-5"
+            (click)="updateUserDialog(element.id)"
+          >
+            Update
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

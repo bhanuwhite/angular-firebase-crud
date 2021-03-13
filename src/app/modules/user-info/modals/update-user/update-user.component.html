@@ -1,0 +1,190 @@
+<div class="user-section">
+  <form [formGroup]="updateUserInfoForm">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label for="">Name</label>
+          <input type="text" class="form-control" formControlName="name" />
+          <div
+            *ngIf="
+              !updateUserInfoForm.controls.name?.valid &&
+              (updateUserInfoForm.controls.name?.dirty ||
+                updateUserInfoForm.controls.name?.touched ||
+                isSubmit)
+            "
+            class="error"
+          >
+            <div [hidden]="!updateUserInfoForm.controls.name.errors.required">
+              Name is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <label for="">Email</label>
+        <input type="email" class="form-control" formControlName="email" />
+        <div
+          *ngIf="
+            !updateUserInfoForm.controls.email?.valid &&
+            (updateUserInfoForm.controls.email?.dirty ||
+              updateUserInfoForm.controls.email?.touched ||
+              isSubmit)
+          "
+          class="error"
+        >
+          <div [hidden]="!updateUserInfoForm.controls.email.errors.required">
+            Email is required
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label for="">Phone Number</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="phoneNumber"
+          />
+          <div
+            *ngIf="
+              !updateUserInfoForm.controls.phoneNumber?.valid &&
+              (updateUserInfoForm.controls.phoneNumber?.dirty ||
+                updateUserInfoForm.controls.phoneNumber?.touched ||
+                isSubmit)
+            "
+            class="error"
+          >
+            <div
+              [hidden]="
+                !updateUserInfoForm.controls.phoneNumber?.errors.required
+              "
+            >
+              Phone number is required
+            </div>
+            <div
+              [hidden]="!updateUserInfoForm.controls.phoneNumber.errors.pattern"
+            >
+              Invalid mobile number
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <label for="">Gender</label>
+        <select name="" class="form-control" formControlName="gender">
+          <option value="">Select gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <div
+          *ngIf="
+            !updateUserInfoForm.controls.gender?.valid &&
+            (updateUserInfoForm.controls.gender?.dirty ||
+              updateUserInfoForm.controls.gender?.touched ||
+              isSubmit)
+          "
+          class="error"
+        >
+          <div [hidden]="!updateUserInfoForm.controls.gender.errors.required">
+            Gender is required
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="form-group">
+          <label for="">Street</label>
+          <input type="text" class="form-control" formControlName="street" />
+          <div
+            *ngIf="
+              !updateUserInfoForm.controls.street?.valid &&
+              (updateUserInfoForm.controls.street?.dirty ||
+                updateUserInfoForm.controls.street?.touched ||
+                isSubmit)
+            "
+            class="error"
+          >
+            <div [hidden]="!updateUserInfoForm.controls.street.errors.required">
+              Street is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group">
+          <label for="">City</label>
+          <input type="text" class="form-control" formControlName="city" />
+          <div
+            *ngIf="
+              !updateUserInfoForm.controls.city?.valid &&
+              (updateUserInfoForm.controls.city?.dirty ||
+                updateUserInfoForm.controls.city?.touched ||
+                isSubmit)
+            "
+            class="error"
+          >
+            <div [hidden]="!updateUserInfoForm.controls.city.errors.required">
+              City is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group">
+          <label for="">Zip Code</label>
+          <input type="number" class="form-control" formControlName="zip" />
+          <div
+            *ngIf="
+              !updateUserInfoForm.controls.zip?.valid &&
+              (updateUserInfoForm.controls.zip?.dirty ||
+                updateUserInfoForm.controls.zip?.touched ||
+                isSubmit)
+            "
+            class="error"
+          >
+            <div [hidden]="!updateUserInfoForm.controls.zip.errors.required">
+              Zip code is required
+            </div>
+            <div [hidden]="!updateUserInfoForm.controls.zip.errors.pattern">
+              Invalid ZIP code
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group">
+          <label for="">Country</label>
+          <input type="text" class="form-control" formControlName="country" />
+          <div
+            *ngIf="
+              !updateUserInfoForm.controls.country?.valid &&
+              (updateUserInfoForm.controls.country?.dirty ||
+                updateUserInfoForm.controls.country?.touched ||
+                isSubmit)
+            "
+            class="error"
+          >
+            <div
+              [hidden]="!updateUserInfoForm.controls.country.errors.required"
+            >
+              Country is required
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="submit-section f-r">
+      <button
+        class="btn btn-primary"
+        [disabled]="!updateUserInfoForm.valid"
+        (click)="updateUser()"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
